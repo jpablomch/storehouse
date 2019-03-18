@@ -218,7 +218,7 @@ S3Storage::S3Storage(S3Config config) : bucket_(config.bucket) {
   cc.connectTimeoutMs = 1000 * 60 * 10;
   cc.requestTimeoutMs = 1000 * 60 * 10;
 
-  client_ = new S3Client(cc, Aws::Client::AWSAuthV4Signer::PayloadSigningPolicy::Never, false)
+  client_ = new S3Client(cc, Aws::Client::AWSAuthV4Signer::PayloadSigningPolicy::Never, false);
 }
 
 S3Storage::~S3Storage() {
