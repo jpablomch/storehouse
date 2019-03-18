@@ -212,13 +212,13 @@ S3Storage::S3Storage(S3Config config) : bucket_(config.bucket) {
   num_clients++;
 
   Aws::Client::ClientConfiguration cc;
-  cc.scheme = Aws::Http::Scheme::HTTPS;
+  cc.scheme = Aws::Http::Scheme::HTTP;
   cc.region = config.endpointRegion;
   cc.endpointOverride = config.endpointOverride;
   cc.connectTimeoutMs = 1000 * 60 * 10;
   cc.requestTimeoutMs = 1000 * 60 * 10;
 
-  client_ = new S3Client(cc);
+  client_ = new S3Client(cc, Aws::Client::AWSAuthV4Signer::PayloadSigningPolicy::Never, false)
 }
 
 S3Storage::~S3Storage() {
